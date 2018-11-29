@@ -33,6 +33,8 @@ def counting(f):
         current += 1
     return z
 
+#MAIN PROGRAM STARTS HERE
+
 #Open text file
 with open(input("Enter a filename: "), 'r') as f:
     file = f.read()
