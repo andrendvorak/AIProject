@@ -12,6 +12,7 @@ def tokenize(f):
         current += 1
     return a
 
+#Takes array of sentences as input and returns array of how many nouns and verbs are in each sentence
 def counting(f):
     z = [] #Stores output array
     current = 0 #Stores current position
@@ -41,3 +42,6 @@ tokenizedInput = tokenize(file)
 print("Finished tokenization")
 countedInput = counting(tokenizedInput)
 print("Finished counting")
+
+for a in countedInput:
+    print(a)
