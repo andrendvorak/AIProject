@@ -12,6 +12,26 @@ def tokenize(f):
         current += 1
     return a
 
+def counting(f):
+    z = [] #Stores output array
+    current = 0 #Stores current position
+    for sentence in tokenizedInput:
+        numNouns = 0
+        numVerbs = 0
+        a = nltk.pos_tag(nltk.word_tokenize(sentence)) #Generate a tag for each word in sentence
+        #Count number of nouns and verbs
+        for word in a:
+            if(word[1][0] == "N"):
+                numNouns += 1
+            elif(word[1][0] == "V"):
+                numVerbs += 1
+        #Add results to list
+        z.append([])
+        z[current].append(numNouns)
+        z[current].append(numVerbs)
+        current += 1
+    return z
+
 #Open text file
 with open(input("Enter a filename: "), 'r') as f:
     file = f.read()
@@ -19,7 +39,5 @@ with open(input("Enter a filename: "), 'r') as f:
 #Tokenize input into sentences
 tokenizedInput = tokenize(file)
 print("Finished tokenization")
-
-
-
-#print("Finished cleaning")
+countedInput = counting(tokenizedInput)
+print("Finished counting")
