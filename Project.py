@@ -1,4 +1,5 @@
 import nltk
+import math
 from random import randint
 
 #Takes string input and returns array with each index another sentence
@@ -31,6 +32,7 @@ def counting(f):
         z.append([])
         z[current].append(numNouns)
         z[current].append(numVerbs)
+        z[current].append(-1) #Add -1 to store closest centroid value later on
         current += 1
     return z
 
@@ -56,8 +58,45 @@ def clustering(cin, numCentroids):
         centroidPosition[count].append(randint(minVerb, maxVerb))
         count += 1
     #Repeats k-means 10 times
-    #for i in range(10):
-    #    print(minNoun)
+    for i in range(10):
+        #Loop through list to find closest centroid
+        for n in cin:
+            n[2] = closestNode(n, centroidPosition)
+        currCluster = 0
+        #Find mean to place centroids for next run
+        for c in centroidPosition:
+            totalN, totalV, count = 0, 0, 0
+            #Iterates through the nodes
+            for n in cin:
+                if n[2] == currCluster: #if this node is in the current cluster
+                    totalN = totalN + n[0]
+                    totalV = totalV + n[1]
+                    count += 1
+            #Reassign centroid position to be mean of the nodes in that cluster
+            try:
+                c[0] = totalN/count
+                c[1] = totalV/count
+            except ZeroDivisionError:
+                print("No nodes in cluster")
+            currCluster += 1
+
+#Takes two points and returns the distance between them
+def distance(i, c):
+    dist = math.sqrt(((c[0]-i[0])**2) + ((c[1]-i[1])**2))
+    return dist
+
+#Takes current sentence position and centroid positions as input and returns what centroid is the closest
+def closestNode(input, centroids):
+    closestNode = -1
+    count = 0
+    closestDistance = distance(input, centroids[0])
+    for c in centroids:
+        f = distance(input, c)
+        if(f<=closestDistance):
+            closestDistance = f
+            closestNode = count
+        count += 1
+    return closestNode
 
 #MAIN PROGRAM STARTS HERE
 
