@@ -38,6 +38,7 @@ def counting(f):
 
 #Takes counted input and number of sentences requested as input and returns the final summarized sentences as output
 def clustering(cin, numCentroids):
+    finalSentences = []
     minNoun, minVerb, maxNoun, maxVerb = cin[0][0], cin[0][1], cin[0][0], cin[0][1]
     for a in cin:
         if(a[0]<minNoun):
@@ -80,6 +81,21 @@ def clustering(cin, numCentroids):
             except ZeroDivisionError: #No nodes in current cluster if this exception is met
                 print()
             currCluster += 1
+    #Iterates through final lists to find closest sentences
+    currCluster, chosenNode = 0, 0
+    for c in centroidPosition:
+        count = 0
+        minDistance = 10000 #Assign min distance to be large so it will be replaced
+        for n in cin:
+            if n[2] == currCluster: #If node is in cluster
+                f = distance(n, c)
+                if(f<minDistance):
+                    minDistance = f
+                    chosenNode = count
+            count += 1
+        finalSentences.append(chosenNode) #Add node with minimum distance to the final sentences for output
+        currCluster += 1
+    return finalSentences
 
 #Takes two points and returns the distance between them
 def distance(i, c):
@@ -116,7 +132,10 @@ numSentences = int(len(tokenizedInput)*(percent/100))
 countedInput = counting(tokenizedInput)
 print("Finished counting")
 
-for a in countedInput:
-    print(a)
+'''for a in countedInput:
+    print(a)'''
 
-clustering(countedInput, numSentences)
+final = clustering(countedInput, numSentences)
+
+for f in final:
+    print(f)
