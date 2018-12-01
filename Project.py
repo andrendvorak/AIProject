@@ -93,7 +93,8 @@ def clustering(cin, numCentroids):
                     minDistance = f
                     chosenNode = count
             count += 1
-        finalSentences.append(chosenNode) #Add node with minimum distance to the final sentences for output
+        if finalSentences.count(chosenNode) == 0:
+            finalSentences.append(chosenNode) #Add node with minimum distance to the final sentences for output
         currCluster += 1
     return finalSentences
 
@@ -137,5 +138,6 @@ print("Finished counting")
 
 final = clustering(countedInput, numSentences)
 
+#Print final output
 for f in final:
-    print(f)
+    print(tokenizedInput[f])
