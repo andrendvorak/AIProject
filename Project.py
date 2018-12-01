@@ -62,6 +62,7 @@ def clustering(cin, numCentroids):
         #Loop through list to find closest centroid
         for n in cin:
             n[2] = closestNode(n, centroidPosition)
+            print(n)
         currCluster = 0
         #Find mean to place centroids for next run
         for c in centroidPosition:
@@ -76,8 +77,8 @@ def clustering(cin, numCentroids):
             try:
                 c[0] = totalN/count
                 c[1] = totalV/count
-            except ZeroDivisionError:
-                print("No nodes in cluster")
+            except ZeroDivisionError: #No nodes in current cluster if this exception is met
+                print()
             currCluster += 1
 
 #Takes two points and returns the distance between them
