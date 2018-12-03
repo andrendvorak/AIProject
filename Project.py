@@ -63,7 +63,7 @@ def clustering(cin, numCentroids):
         #Loop through list to find closest centroid
         for n in cin:
             n[2] = closestNode(n, centroidPosition)
-            print(n)
+            #print(n) #Uncomment this line in order to print each node after every iteration
         currCluster = 0
         #Find mean to place centroids for next run
         for c in centroidPosition:
@@ -122,7 +122,7 @@ def closestNode(input, centroids):
 with open(input("Enter a filename: "), 'r') as f:
     file = f.read()
 
-percent = int(input("How much summarization? "))
+percent = int(input("Percentage to keep (0-100): "))
 
 #Tokenize input into sentences
 tokenizedInput = tokenize(file)
