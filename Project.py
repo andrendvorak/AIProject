@@ -79,7 +79,7 @@ def clustering(cin, numCentroids):
                 c[0] = totalN/count
                 c[1] = totalV/count
             except ZeroDivisionError: #No nodes in current cluster if this exception is met
-                print()
+                pass
             currCluster += 1
     #Iterates through final lists to find closest sentences
     currCluster, chosenNode = 0, 0
@@ -138,6 +138,10 @@ print("Finished counting")
 
 final = clustering(countedInput, numSentences)
 
-#Print final output
+#Creates final output file
+output = open("output.txt", "w")
 for f in final:
-    print(tokenizedInput[f])
+    output.write(tokenizedInput[f] + "\n")
+output.close()
+
+print("Created output file")
