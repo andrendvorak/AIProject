@@ -49,7 +49,6 @@ def clustering(cin, numCentroids):
             minVerb = a[1]
         elif(a[1]>maxVerb):
             maxVerb = a[1]
-    #print("minNoun = " + str(minNoun) + " minVerb " + str(minVerb) + " maxNoun " + str(maxNoun) + " maxVerb " + str(maxVerb))
     centroidPosition = []
     count = 0
     #Initialize centroid position to be within bounds of numNouns and numVerbs
