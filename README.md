@@ -1,6 +1,8 @@
-# AIProject
+# Undergraduate K-Means AI Project
 
-Using Python 3.6 and NLTK 3.4
+Uses K-Means clustering to reduce and summarize a .txt file.
+
+Made using Python 3.6 and NLTK 3.4
 
 To run:
 Enter name of .txt file when prompted 
