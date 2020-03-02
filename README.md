@@ -1,6 +1,6 @@
 # Undergraduate K-Means AI Project
 
-Uses K-Means clustering to reduce and summarize a .txt file.
+Uses K-Means clustering to reduce and summarize a .txt file
 
 Made using Python 3.6 and NLTK 3.4
 
